@@ -29,9 +29,8 @@
             }
             else if (escolhaDeConversao != 1 && escolhaDeConversao != 2 && escolhaDeConversao != 3 && escolhaDeConversao != 4)
             {
-                Console.WriteLine("Opção inválida, tente novamente...");
-                Console.WriteLine("Pressione Enter para continuar...");
-                Console.ReadLine();
+                Console.WriteLine("Opção inválida, pressione qualquer tecla para tentar novamente");
+                Console.ReadKey();
                 Console.Clear();
                 continue;
             }
@@ -74,8 +73,8 @@
             }
             else
             {
-                Console.WriteLine("Valor inválido, pressione 'Enter' para tentar novamente");
-                Console.ReadLine();
+                Console.WriteLine("Valor inválido, pressione qualquer tecla para tentar novamente");
+                Console.ReadKey();
                 Console.Clear();
                 continue;
             }
