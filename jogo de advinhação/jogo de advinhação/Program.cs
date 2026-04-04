@@ -2,21 +2,27 @@
 {
     static void Main()
     {
-        string[] objetos = { "silêncio", "ser-humano", "buraco"};
-
         int chances = 3;
-        string opcao;
 
-        Random random = new Random();
+        while (true)
+        {
+            string charadaSorteada = SortearCharada();
 
-        string objetoSorteado = objetos[random.Next(objetos.Length)];
+            Console.WriteLine("==========\nBem-vindo ao jogo de adivinhação!\n==========\n");
+
+            VerificarResposta(ref chances, charadaSorteada);
+
+            FimDeJogo(ref chances, charadaSorteada);
+
+        }
+    }
+
+    static void VerificarResposta(ref int chances, string charadaSorteada)
+    {
         string resposta;
-
-        Console.WriteLine("==========\nBem-vindo ao jogo de adivinhação!\n==========\n");
-
         while (chances > 0)
         {
-            switch (objetoSorteado)
+            switch (charadaSorteada)
             {
                 case "silêncio":
                     Console.WriteLine("O que é?, o que é? Quanto mais você o chama, menos ele aparece?\n");
@@ -32,9 +38,11 @@
             }
 
             resposta = Console.ReadLine();
-            if (objetoSorteado == resposta)
+            if (charadaSorteada == resposta.ToLower())
             {
+                Console.Clear();
                 Console.WriteLine("Parabéns, você acertou!");
+                Console.WriteLine("Gostaria de tentar novamente? Digite 'sim' ou qualquer outra coisa para 'não'");
                 break;
             }
             else
@@ -45,20 +53,37 @@
                 Console.Clear();
             }
         }
-        if(chances <= 0)
+    }
+
+    static void FimDeJogo(ref int chances, string charadaSorteada)
+    {
+        string continuarJogo;
+
+        if (chances <= 0)
         {
-            Console.WriteLine($"Suas chances acabaram! O objeto era: {objetoSorteado}");
+            Console.WriteLine($"Suas chances acabaram! A resposta era: {charadaSorteada}");
             Console.WriteLine("Gostaria de tentar novamente? Digite 'sim' ou qualquer outra coisa para 'não'");
         }
-        opcao = Console.ReadLine();
-        if(opcao.ToLower() == "sim")
+        continuarJogo = Console.ReadLine();
+        if (continuarJogo.ToLower() == "sim")
         {
             Console.Clear();
-            Main();
+            chances = 3;
         }
         else
         {
             Console.WriteLine("Obrigado por jogar! Até a próxima!");
+            Environment.Exit(0);
         }
+    }
+
+    static string SortearCharada()
+    {
+        Random random = new Random();
+        string[] charadas = { "silêncio", "ser-humano", "buraco" };
+        string charadaSorteada = string.Empty;
+
+        charadaSorteada = charadas[random.Next(charadas.Length)];
+        return charadaSorteada;
     }
 }

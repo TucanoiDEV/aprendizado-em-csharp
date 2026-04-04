@@ -80,7 +80,6 @@ class Program
             {
                 Console.Clear();
                 Console.WriteLine("Obrigado por usar o sistema de login!!!");
-                Console.ReadKey();
                 finalizarCodigo = true;
             }
             else
