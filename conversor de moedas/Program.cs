@@ -2,23 +2,32 @@
 {
     static void Main()
     {
-        float valor = 0;
         float valorConvertido = 0;
-        int escolha = 0;
-        string moeda = "";
+        float valorEmReal = 0;
+        int escolhaDeConversao = 0;
+        string moedaConversora = string.Empty;
 
-        while(escolha != 5)
+        while(true)
+        {
+            Menu(ref escolhaDeConversao);
+            Conversao(valorEmReal, ref escolhaDeConversao, valorConvertido, moedaConversora);
+        }
+    }
+
+    static void Menu(ref int escolhaDeConversao)
+    {
+        while (true)
         {
             Console.WriteLine("Escolha para qual moeda quer conveter o valor\n( 1 ) Dólar\n( 2 ) Euro\n( 3 ) Libra\n( 4 ) Peso\n( 5 ) Sair do programa");
-            int.TryParse(Console.ReadLine(), out escolha);
+            int.TryParse(Console.ReadLine(), out escolhaDeConversao);
             Console.Clear();
 
-            if (escolha == 5)
+            if (escolhaDeConversao == 5)
             {
                 Console.WriteLine("Saindo do programa...");
-                break;
+                Environment.Exit(0);
             }
-            else if(escolha != 1 && escolha != 2 && escolha != 3 && escolha != 4)
+            else if (escolhaDeConversao != 1 && escolhaDeConversao != 2 && escolhaDeConversao != 3 && escolhaDeConversao != 4)
             {
                 Console.WriteLine("Opção inválida, tente novamente...");
                 Console.WriteLine("Pressione Enter para continuar...");
@@ -26,32 +35,40 @@
                 Console.Clear();
                 continue;
             }
+            break;
+        }
 
+    }
+
+    static void Conversao(float valorEmReal, ref int escolhaDeConversao,float valorConvertido, string moedaConversora)
+    {
+        while (true)
+        {
             Console.Write("Digite o valor (em reais) que deverá ser convertido: ");
-            if (float.TryParse(Console.ReadLine(), out valor))
+            if (float.TryParse(Console.ReadLine(), out valorEmReal))
             {
                 Console.Clear();
 
-                switch (escolha)
+                switch (escolhaDeConversao)
                 {
                     case 1:
-                        valorConvertido = valor * 0.19f;
-                        moeda = "Dólar";
+                        valorConvertido = valorEmReal * 0.19f;
+                        moedaConversora = "Dólar";
                         break;
 
                     case 2:
-                        valorConvertido = valor * 0.16f;
-                        moeda = "Euro";
+                        valorConvertido = valorEmReal * 0.16f;
+                        moedaConversora = "Euro";
                         break;
 
                     case 3:
-                        valorConvertido = valor * 0.14f;
-                        moeda = "Libra";
+                        valorConvertido = valorEmReal * 0.14f;
+                        moedaConversora = "Libra";
                         break;
 
                     case 4:
-                        valorConvertido = valor * 264.58f;
-                        moeda = "Peso";
+                        valorConvertido = valorEmReal * 264.58f;
+                        moedaConversora = "Peso";
                         break;
                 }
             }
@@ -63,10 +80,11 @@
                 continue;
             }
 
-            Console.WriteLine($"{valor} em reais corresponde a {valorConvertido:F2} em {moeda}");
+            Console.WriteLine($"{valorEmReal:F2}R$ corresponde a {valorConvertido:F2} em {moedaConversora}");
             Console.WriteLine("Pressione Enter para continuar...");
             Console.ReadLine();
             Console.Clear();
+            break;
         }
     }
 }
