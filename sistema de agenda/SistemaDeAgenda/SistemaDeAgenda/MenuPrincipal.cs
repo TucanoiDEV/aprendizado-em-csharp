@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace menu
+namespace SistemaDeAgendamento
 {
     internal class MenuPrincipal
     {
@@ -26,6 +26,7 @@ namespace menu
                     Console.ReadKey();
                     continue;
                 }
+                Console.Clear();
             }
         }
     }

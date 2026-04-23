@@ -1,9 +1,9 @@
-﻿using menu;
+﻿using SistemaDeAgendamento;
 
 class Program
 {
     static void Main()
     {
-        menu.MenuPrincipal.menuInicial();
+        SistemaDeAgendamento.MenuPrincipal.menuInicial();
     }
 }
