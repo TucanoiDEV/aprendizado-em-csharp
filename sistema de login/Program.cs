@@ -12,8 +12,8 @@ class Program
         while (true)
         {
             Menu(ref opcaoEscolhida);
-            
-            switch(opcaoEscolhida)
+
+            switch (opcaoEscolhida)
             {
                 case "1":
                     Cadastrar(usuariosNome, usuariosSenha);
